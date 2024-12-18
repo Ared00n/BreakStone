@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald&display=swap" rel="stylesheet">
+    <link rel="icon"
+        href="https://avatars.yandex.net/get-music-content/5207413/e09ace17.a.17608117-1/m1000x1000?webp=false"
+        type="image/x-icon">
+    <title>What is</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Bebas Neue', sans-serif;
+            background-image: url(https://avatars.mds.yandex.net/i?id=faaa083454c3b5ec8a09b0e882aacd28_l-5280087-images-thumbs&n=13);
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #f0f0f0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #f0f0f0;
+            text-decoration: none;
+            padding: 15px 25px;
+            margin: 0 10px;
+            border-radius: 5px;
+            font-family: 'Oswald', sans-serif;
+            transition: background 0.3s, color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: 5% auto;
+            padding: 20px;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .card {
+            width: 100px;
+            height: 150px;
+            perspective: 1000px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .card-front {
+            background-color: #ffffff;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .card-back {
+            background-color: #000000;
+            transform: rotateY(180deg);
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .card.flip .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .message {
+            position: absolute;
+            color: white;
+            font-size: 2em;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            opacity: 1;
+            transition: opacity 1s;
+        }
+
+        .wheel {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 16px solid #333;
+            position: relative;
+            overflow: hidden;
+            transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        .segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            background-color: #503b4c;
+            clip-path: polygon(100% 0, 0 100%, 100% 100%);
+            transform-origin: 100% 100%;
+            transform: rotate(calc(var(--i) * 60deg));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .segment:nth-child(even) {
+            background-color: #41022e;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+    
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="#" id="openModal">What Is</a>
+            <a href="#" id="showMessageButton">What Is</a>
+            <a href="#" id="openWheelModal">What Is</a>
+            <a href="#">What Is</a>
+        </nav>
+    </header>
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <div class="card" onclick="this.classList.toggle('flip')">
+                <div class="card-inner">
+                    <div class="card-front" style="color: #000000;">What Is</div>
+                    <div class="card-back" style="color: #f0f0f0;">What Is</div>
+                </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flip')">
+                <div class="card-inner">
+                    <div class="card-front" style="color: #000000;">What Is</div>
+                    <div class="card-back" style="color: #f0f0f0;">What Is</div>
+                </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flip')">
+                <div class="card-inner">
+                    <div class="card-front" style="color: #000000;">What Is</div>
+                    <div class="card-back" style="color: #f0f0f0;">What Is</div>
+                </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flip')">
+                <div class="card-inner">
+                    <div class="card-front" style="color: #000000;">What Is</div>
+                    <div class="card-back" style="color: #f0f0f0;">What Is</div>
+                </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flip')">
+                <div class="card-inner">
+                    <div class="card-front" style="color: #000000;">What Is</div>
+                    <div class="card-back" style="color: #f0f0f0;">What Is</div>
+                </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flip')">
+                <div class="card-inner">
+                    <div class="card-front" style="color: #000000;">What Is</div>
+                    <div class="card-back" style="color: #f0f0f0;">What Is</div>
+                </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flip')">
+                <div class="card-inner">
+                    <div class="card-front" style="color: #000000;">What Is</div>
+                    <div class="card-back" style="color: #f0f0f0;">What Is</div>
+                </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flip')">
+                <div class="card-inner">
+                    <div class="card-front" style="color: #000000;">What Is</div>
+                    <div class="card-back" style="color: #f0f0f0;">What Is</div>
+                </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flip')">
+                <div class="card-inner">
+                    <div class="card-front" style="color: #000000;">What Is</div>
+                    <div class="card-back" style="color: #f0f0f0;">What Is</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Модальное окно для карточек
+        const modal = document.getElementById("myModal");
+        const btn = document.getElementById("openModal");
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Показать сообщения
+        const button = document.getElementById('showMessageButton');
+        const messageCount = 10;
+
+        button.addEventListener('click', () => {
+            for (let i = 0; i < messageCount; i++) {
+                const message = document.createElement('div');
+                message.className = 'message';
+                message.innerText = 'What Is';
+
+                const x = Math.random() * (window.innerWidth - 200);
+                const y = Math.random() * (window.innerHeight - 50);
+
+                message.style.left = `${x}px`;
+                message.style.top = `${y}px`;
+
+                document.body.appendChild(message);
+
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    setTimeout(() => message.remove(), 1000);
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+
+</html>
